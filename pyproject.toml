@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "qd-image-search"
+version = "0.1.0"
+description = "A local image search CLI tool backed by QDrant and CLIP embeddings"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.0",
+    "qdrant-client>=1.7",
+    "transformers>=4.30",
+    "torch>=2.0",
+    "Pillow>=9.0",
+    "numpy>=1.24",
+]
+
+[project.scripts]
+qd-image-search = "qd_image_search.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qd_image_search"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
